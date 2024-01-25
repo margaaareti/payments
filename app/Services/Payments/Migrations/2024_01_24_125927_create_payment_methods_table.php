@@ -11,20 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('orders', function (Blueprint $table) {
+        Schema::create('payment_methods', function (Blueprint $table) {
             $table->id()->from(1001);
-            $table->uuid()->unique();
             $table->timestamps();
 
-            $table->string('status');
 
-            $table->string('currency_id');
-            $table->foreign('currency_id')->references('id')->on('currencies');
-
-            $table->decimal('amount', 12,2);
-
-//            $table->timestamp('status_at');
-//            $table->string('comment');
+            $table->string('name');
+            $table->boolean('active')->default(false);
+            $table->string('driver');
         });
     }
 
@@ -33,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('orders');
+        Schema::dropIfExists('payment_methods');
     }
 };

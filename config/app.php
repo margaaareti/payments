@@ -128,7 +128,7 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Maintenance Mode Driver
+    | Maintenance Mode Drivers
     |--------------------------------------------------------------------------
     |
     | These configuration options determine the driver used to determine and
@@ -175,6 +175,8 @@ return [
          */
         App\Services\Currencies\CurrencyServiceProvider::class,
         App\Services\Orders\OrderServicesProvider::class,
+        App\Services\Payments\PaymentServiceProvider::class,
+
     ])->toArray(),
 
     /*

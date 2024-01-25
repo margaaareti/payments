@@ -3,6 +3,7 @@
 namespace App\Services\Orders\Models;
 
 use App\Services\Orders\Enums\OrderStatusEnum;
+use App\Services\Payments\Enums\PaymentDriverEnum;
 use App\Support\Values\AmountValue;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -13,7 +14,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $uuid
  * @property Carbon $created_at
  * @property Carbon $updated_at
- * @property OrderStatusEnum $status
+ * @property PaymentDriverEnum $status
  * @property AmountValue $amount
  * @property string $currency_id
  */
