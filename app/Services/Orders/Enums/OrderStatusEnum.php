@@ -12,18 +12,40 @@ enum OrderStatusEnum: string
     public function name(): string
     {
         return match ($this) {
-            self::pending=> 'Ожидание',
-            self::completed=> 'Завершен',
-            self::cancelled=> 'Отменено',
+            self::pending => 'Ожидание',
+            self::completed => 'Завершен',
+            self::cancelled => 'Отменено',
         };
     }
 
     public function color(): string
     {
         return match ($this) {
-            self::pending=> 'warning',
-            self::completed=> 'success',
-            self::cancelled=> 'danger',
+            self::pending => 'warning',
+            self::completed => 'success',
+            self::cancelled => 'danger',
         };
     }
+
+    public function is(OrderStatusEnum $status): bool
+    {
+        return $this === $status;
+    }
+
+
+    public function isPending(): bool
+    {
+        return $this->is(self::pending);
+    }
+
+    public function isCompleted(): bool
+    {
+        return $this->is(self::completed);
+    }
+
+    public function isCancelled(): bool
+    {
+        return $this->is(self::cancelled);
+    }
+
 }

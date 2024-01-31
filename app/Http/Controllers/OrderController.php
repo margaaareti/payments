@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Services\Orders\Models\Order;
+use App\Services\Payments\PaymentService;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
@@ -24,6 +25,17 @@ class OrderController extends Controller
 //        abort_unless($user->owns($order),404);
 
         return view('orders.show', compact('order'));
+
+    }
+
+    public function payment(Order $order, PaymentService $paymentService)
+    {
+        $payment = $paymentService
+            ->createPayment()
+            ->payable($order)
+            ->run();
+
+        return to_route('payments.checkout',['payment'=> $payment->uuid]);
 
     }
 }

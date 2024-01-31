@@ -28,7 +28,7 @@ return new class extends Migration {
 
             $table->foreignId('method_id')->nullable()->constrained('payment_methods');
 
-            $table->string('driver');
+            $table->string('driver')->nullable();
 
         });
     }

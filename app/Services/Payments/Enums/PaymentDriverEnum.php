@@ -16,4 +16,10 @@ enum PaymentDriverEnum: string
         };
     }
 
+    public function isTest(): bool
+    {
+        return $this === self::test;
+
+    }
+
 }
