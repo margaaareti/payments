@@ -30,6 +30,5 @@ class CancelOrderListener
         } else {
             throw new Exception();
         }
-
     }
 }

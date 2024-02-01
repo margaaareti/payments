@@ -18,7 +18,7 @@ interface Payable
 
     public function getPayableUrl():string;
 
-    public function onPaymentComplete(): void;
+//    public function onPaymentComplete(): void;
 
 
 }

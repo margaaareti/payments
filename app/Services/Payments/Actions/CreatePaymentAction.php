@@ -10,7 +10,7 @@ use Illuminate\Support\Str;
 class CreatePaymentAction
 {
 
-    private readonly Payable $payable;
+    private Payable $payable;
 
 
     public function payable(Payable $payable): static

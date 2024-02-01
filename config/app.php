@@ -176,6 +176,7 @@ return [
         App\Services\Currencies\CurrencyServiceProvider::class,
         App\Services\Orders\OrderServicesProvider::class,
         App\Services\Payments\PaymentServiceProvider::class,
+        App\Services\Subscriptions\SubscriptionServiceProvider::class,
 
     ])->toArray(),
 

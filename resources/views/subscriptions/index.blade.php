@@ -6,10 +6,21 @@
 
         <div class="container">
 
-            <h4>Мои заказы</h4>
+            <div class="d-flex justify-content-between mb-3">
+                <div>
+                    <h4>Мои подписки</h4>
+                </div>
 
-            @if($orders->isEmpty())
-                Нет ни одной записи
+                <div>
+                    <a href="{{route('subscriptions.create')}}" class="btn btn-primary btn-sm">
+                        Подписаться
+                    </a>
+                </div>
+            </div>
+
+
+            @if($subscriptions->isEmpty())
+                Нет ни одной подписки
             @else
 
                 <div class="table-responsive">
@@ -22,24 +33,24 @@
                             <th></th>
                         </tr>
 
-                        @foreach ($orders as $order)
+                        @foreach ($subscriptions as $subscription)
 
                             <tr>
                                 <td>
-                                    {{$order->uuid}}
+                                    {{$subscription->uuid}}
                                 </td>
 
                                 <td>
-                                    {{$order->amount}} {{$order->currency_id}}
+                                    {{$subscription->price}} {{$subscription->currency_id}}
                                 </td>
 
                                 <td>
-                                    <div class="text-{{$order->status->color()}}">{{$order->status->name()}}</div>
+                                    <div
+                                        class="text-{{$subscription->status->color()}}">{{$subscription->status->name()}}</div>
                                 </td>
 
                                 <td>
-
-                                    <a href="{{route('orders.show', $order->uuid)}}">
+                                    <a href="{{route('subscriptions.show', $subscription->uuid)}}">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                              fill="currentColor"
                                              class="bi bi-eye" viewBox="0 0 16 16">

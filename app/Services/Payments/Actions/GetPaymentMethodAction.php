@@ -4,7 +4,6 @@ namespace App\Services\Payments\Actions;
 
 use App\Services\Payments\Models\PaymentMethod;
 use Illuminate\Contracts\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Collection;
 
 class GetPaymentMethodAction
 {
