@@ -2,7 +2,6 @@
 
 namespace App\Services\Orders;
 
-use App\Services\Currencies\Commands\InstallCurrenciesCommand;
 use App\Services\Orders\Listeners\CancelOrderListener;
 use App\Services\Orders\Listeners\CompleteOrderListener;
 use App\Services\Orders\Models\Order;
