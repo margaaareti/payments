@@ -11,6 +11,6 @@ class PaymentEntity
         public PaymentStatusEnum $status,
         public string $order,
         public int $amount,
-        public string $url
+        public ?string $url = null,
     ){}
 }

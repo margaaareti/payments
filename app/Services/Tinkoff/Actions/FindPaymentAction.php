@@ -4,11 +4,13 @@ namespace App\Services\Tinkoff\Actions;
 
 use App\Services\Tinkoff\Entities\PaymentEntity;
 use App\Services\Tinkoff\Enums\PaymentStatusEnum;
+use App\Services\Tinkoff\Exceptions\TinkoffException;
 use App\Services\Tinkoff\TinkoffClient;
 use App\Services\Tinkoff\TinkoffService;
 use Exception;
+use Illuminate\Support\Facades\Http;
 
-class CreatePaymentAction
+class FindPaymentAction
 {
 
     public function __construct(private readonly TinkoffService $tinkoff)
@@ -24,26 +26,22 @@ class CreatePaymentAction
     /**
      * @throws Exception
      */
-    public function run(CreatePaymentData $data): PaymentEntity
+    public function run(string $id): PaymentEntity
     {
         $data = [
-            'Amount' => $data->amount,
-            'OrderId' => $data->order,
+            'PaymentId' => $id,
             'Password' => $this->tinkoff->config->password,
             'TerminalKey' => $this->tinkoff->config->terminal,
-            'SuccessURL'=>$data->successUrl,
-            'FailURL'=>$data->successUrl,
-            'NotificationURL'=>$data->callbackUrl,
         ];
 
-        $response = TinkoffClient::make($this->tinkoff)->post('Init', $data);
+
+        $response = TinkoffClient::make($this->tinkoff)->post('Get',$data);
 
         return new PaymentEntity(
             id: $response['PaymentId'],
             status: PaymentStatusEnum::from($response['Status']),
             order: $response['OrderId'],
             amount: $response['Amount'],
-            url: $response['PaymentURL'],
         );
     }
 }
