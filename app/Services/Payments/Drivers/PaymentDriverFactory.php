@@ -12,6 +12,7 @@ class PaymentDriverFactory
     {
         return match ($driver) {
             PaymentDriverEnum::test => new TestPaymentDriver(),
+            PaymentDriverEnum::tinkoff => new TinkoffDriver(),
 
             default =>  throw new InvalidArgumentException(
                 "Драйвер [{$driver->name()}] не поддерживается",

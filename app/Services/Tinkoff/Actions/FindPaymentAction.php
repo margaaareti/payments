@@ -4,11 +4,9 @@ namespace App\Services\Tinkoff\Actions;
 
 use App\Services\Tinkoff\Entities\PaymentEntity;
 use App\Services\Tinkoff\Enums\PaymentStatusEnum;
-use App\Services\Tinkoff\Exceptions\TinkoffException;
 use App\Services\Tinkoff\TinkoffClient;
 use App\Services\Tinkoff\TinkoffService;
 use Exception;
-use Illuminate\Support\Facades\Http;
 
 class FindPaymentAction
 {
@@ -35,7 +33,7 @@ class FindPaymentAction
         ];
 
 
-        $response = TinkoffClient::make($this->tinkoff)->post('Get',$data);
+        $response = TinkoffClient::make($this->tinkoff)->post('GetState',$data);
 
         return new PaymentEntity(
             id: $response['PaymentId'],

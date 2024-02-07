@@ -5,6 +5,7 @@ namespace App\Services\Payments\Enums;
 enum PaymentDriverEnum: string
 {
     case test = 'test';
+    case tinkoff = 'tinkoff';
 
 
 
@@ -12,6 +13,7 @@ enum PaymentDriverEnum: string
     {
         return match ($this) {
             self::test=> 'Тестовый способ',
+            self::tinkoff=> 'Tinkoff',
 
         };
     }
