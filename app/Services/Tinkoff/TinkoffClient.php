@@ -8,8 +8,6 @@ use Illuminate\Support\Facades\Http;
 
 class TinkoffClient
 {
-
-
     public function __construct(public TinkoffService $tinkoff)
     {
     }

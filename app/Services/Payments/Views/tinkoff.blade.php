@@ -9,5 +9,10 @@
 </head>
 <body>
 Redirect for payment...
+
+<script>
+    window.location.href = "{{ $entity->url }}"
+</script>
+
 </body>
 </html>

@@ -22,16 +22,19 @@ class TinkoffDriver extends PaymentDriver
             )
         );
 
-        $tinkoffService->createPayment(
+        $entity = $tinkoffService->createPayment(
             new CreatePaymentData(
                 amount: $payment->amount->value() * 100,
                 order: $payment->uuid,
-                successUrl: route('payments.success', ['uuid'=>$payment]),
-                failureUrl: route('payments.failure', ['uuid'=>$payment]),
-                callbackUrl:'https://webhook.site/d60efa34-6cf9-41f9-975c-aaff3069b94f',
+                successUrl: route('payments.success', ['uuid'=>$payment->uuid]),
+                failureUrl: route('payments.failure', ['uuid'=>$payment->uuid]),
+                callbackUrl:'https://dddwww.free.beeceptor.com',
             )
         );
 
-        return view('payments::tinkoff', compact('payment'));
+        $payment->update(['driver_payment_id'=> $entity->id]);
+
+
+        return view('payments::tinkoff', compact('entity'));
     }
 }

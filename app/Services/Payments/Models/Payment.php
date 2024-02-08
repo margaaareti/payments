@@ -26,6 +26,7 @@ use Illuminate\Database\Eloquent\Relations\MorphTo;
  * @property Payable $payable
  * @property PaymentMethod $method
  * @property PaymentDriverEnum $driver
+ * @property string|null $driver_payment_id
  *
  */
 class Payment extends Model
@@ -38,7 +39,7 @@ class Payment extends Model
         'currency_id', 'amount',
         'payable_type', 'payable_id',
         'method_id',
-        'driver'
+        'driver', 'driver_payment_id'
     ];
 
 
