@@ -17,10 +17,9 @@ class TinkoffClient
         return new static($tinkoff);
     }
 
-    public function post(string $url, array $data):array
+    public function post(string $url, array $data): array
     {
-
-        $data = $this->addToken($data);
+        $data['Token'] = $this->createToken($data);
 
         $response = $this->client()->post($url, $data);
 
@@ -33,25 +32,24 @@ class TinkoffClient
         return $response;
     }
 
-    public function client():PendingRequest
+    public function client(): PendingRequest
     {
-
-        return Http::baseUrl('https://securepay.tinkoff.ru/v2/');
+        return Http::baseUrl('https://securepay.tinkoff.ru/v2');
     }
 
-    public function addToken(array $data): array
+    public function createToken(array $data): string
     {
         unset($data['Token']);
 
-        if(isset($data['Success'])) {
-            $data['Success']=$data['Success'] ? 'true' : 'false';
+        if (isset($data['Success'])) {
+            $data['Success'] = $data['Success'] ? 'true' : 'false';
         }
 
-        $token = collect($data)->sortKeys()->implode('');
+        $token = $data;
+        $token['Password'] = $this->tinkoff->config->password;
+        $token = collect($token)->sortKeys()->implode('');
         $token = hash('sha256', $token);
-        $data['Token'] = $token;
 
-        return $data;
-
+        return $token;
     }
 }

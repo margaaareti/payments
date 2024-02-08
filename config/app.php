@@ -177,6 +177,7 @@ return [
         App\Services\Orders\OrderServicesProvider::class,
         App\Services\Payments\PaymentServiceProvider::class,
         App\Services\Subscriptions\SubscriptionServiceProvider::class,
+        \App\Providers\TinkoffServiceProvider::class,
 
     ])->toArray(),
 

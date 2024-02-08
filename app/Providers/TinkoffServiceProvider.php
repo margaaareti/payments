@@ -2,24 +2,31 @@
 
 namespace App\Providers;
 
-use App\Services\Tinkoff\Actions\CreatePaymentData;
 use App\Services\Tinkoff\TinkoffConfig;
 use App\Services\Tinkoff\TinkoffService;
 use Illuminate\Support\ServiceProvider;
 
-class TinkoffProvider extends ServiceProvider
+class TinkoffServiceProvider extends ServiceProvider
 {
 
-public function register(): void
-{
+    public function register(): void
+    {
 
-}
+        $this->app->bind(TinkoffService::class, function (){
+            $config = config('services.tinkoff');
 
-    public function boot()
-    {}
-    
+            return new TinkoffService(
+                new TinkoffConfig(
+                    terminal: $config['terminal'],
+                    password: $config['terminal'],
+                ),
+            );
+        });
+    }
 
-}
+    public function boot(): void
+    {
 
+    }
 
 }

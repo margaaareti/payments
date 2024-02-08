@@ -32,7 +32,7 @@ class CreatePaymentAction
             'Password' => $this->tinkoff->config->password,
             'TerminalKey' => $this->tinkoff->config->terminal,
             'SuccessURL'=>$data->successUrl,
-            'FailURL'=>$data->successUrl,
+            'FailURL'=>$data->failureUrl,
             'NotificationURL'=>$data->callbackUrl,
         ];
 

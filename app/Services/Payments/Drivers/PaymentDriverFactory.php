@@ -8,16 +8,15 @@ use InvalidArgumentException;
 class PaymentDriverFactory
 
 {
-    public function make(PaymentDriverEnum $driver):PaymentDriver
+    public function make(PaymentDriverEnum $driver): PaymentDriver
     {
         return match ($driver) {
-            PaymentDriverEnum::test => new TestPaymentDriver(),
-            PaymentDriverEnum::tinkoff => new TinkoffDriver(),
+            PaymentDriverEnum::test => app(TestPaymentDriver::class),
+            PaymentDriverEnum::tinkoff => app(TinkoffDriver::class),
 
-            default =>  throw new InvalidArgumentException(
+            default => throw new InvalidArgumentException(
                 "Драйвер [{$driver->name()}] не поддерживается",
             )
         };
     }
-
 }

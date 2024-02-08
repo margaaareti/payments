@@ -8,8 +8,6 @@ use App\Services\Tinkoff\Exceptions\TinkoffException;
 use App\Services\Tinkoff\TinkoffClient;
 use App\Services\Tinkoff\TinkoffService;
 use Exception;
-use Illuminate\Support\Facades\Http;
-use PhpParser\Token;
 
 class CheckCallbackAction
 {
@@ -30,13 +28,13 @@ class CheckCallbackAction
     public function run(array $data): PaymentEntity
     {
 
-        $myToken = TinkoffClient::make($this->tinkoff)
-            ->addToken($data);
+        $token = TinkoffClient::make($this->tinkoff)
+            ->createToken($data);
 
 
         //Формируем свой токен для проверки
-        if ($data['Token'] !== $myToken['Token']) {
-            throw new TinkoffException('Неверный токен: ' . $data['Token'] . ', ожидался: ' . $myToken['Token']);
+        if ($data['Token'] !== $token) {
+            throw new TinkoffException('Неверный токен: ' . $token . ', ожидался: ' . $token);
         }
 
         return new PaymentEntity(
