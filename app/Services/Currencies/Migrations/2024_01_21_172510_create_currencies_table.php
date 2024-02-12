@@ -16,6 +16,9 @@ return new class extends Migration
             $table->timestamps();
 
             $table->string('name');
+            $table->decimal('price', 21,8)->comment('Цена в RUB');
+            $table->string('source')->comment('Источник цены');
+//            $table->boolean('main')->comment('Основная валюта');
         });
     }
 
